@@ -11,6 +11,11 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    phoneNumber: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     email: {
       type: String,
       unique: true,
@@ -27,6 +32,28 @@ const UserSchema = new mongoose.Schema(
       min: 6,
       max: 12,
     },
+    role: {
+      type: String,
+      default: "user",
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false,
+    },
+    cart: {
+      type: Array,
+      default: [],
+    },
+    address: {
+      type: String,
+    },
+    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+    refreshToken: {
+      type: String,
+    },
+    passwordChangedAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date,
   },
 
   {

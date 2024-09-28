@@ -4,9 +4,9 @@ const bodyParser = require("body-parser");
 const colors = require("colors");
 const cors = require("cors");
 const compression = require("compression");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const authRoutes = require("./routes/AuthRoutes");
-
+const productRoutes = require("./routes/Product");
 const mongoose = require("mongoose");
 const path = require("path");
 const config = require("config");
@@ -44,12 +44,13 @@ mongoose
 /////
 app.use(express.json());
 app.use("/api/auth/", authRoutes);
+app.use("/api/products/", productRoutes);
 
 // app.use(express.static(path.join(__dirname, "/build")));
 // app.get("*", (req, res) =>
 //   res.sendFile(path.join(__dirname, "build/index.html"))
 // );
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 app.listen(
   PORT,
