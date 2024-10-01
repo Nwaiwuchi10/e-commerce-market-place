@@ -10,7 +10,7 @@ const productRoutes = require("./routes/Product");
 const mongoose = require("mongoose");
 const path = require("path");
 const config = require("config");
-
+const categoryRoutes = require("./routes/CategoryRoutes");
 // const router = express.Router();
 const app = express();
 app.use(cors());
@@ -45,6 +45,7 @@ mongoose
 app.use(express.json());
 app.use("/api/auth/", authRoutes);
 app.use("/api/products/", productRoutes);
+app.use("/api/category/", categoryRoutes);
 
 // app.use(express.static(path.join(__dirname, "/build")));
 // app.get("*", (req, res) =>
