@@ -4,9 +4,8 @@ const router = require("express").Router();
 
 router.post("/", async (req, res) => {
   const {
-    products,
-    paymentIntent,
-    User,
+    cartItems,
+    user,
     deliveredAt,
     isDelivered,
     paidAt,
@@ -18,16 +17,17 @@ router.post("/", async (req, res) => {
     paymentMethod,
     shippingAddress,
   } = req.body;
-  const productlist = products.map((item) => ({
+
+  const productlist = cartItems.map((item) => ({
     count: item.count,
     color: item.color,
     product: item.product,
   }));
+
   try {
     const orderItems = await Order.create({
-      User: User,
-      products: productlist,
-      paymentIntent: paymentIntent,
+      user,
+      cartItems: productlist,
       deliveredAt,
       isDelivered,
       paidAt,
@@ -39,14 +39,15 @@ router.post("/", async (req, res) => {
       paymentMethod,
       shippingAddress,
     });
-    orderItems.save();
+
     res.status(201).json({
-      message: "Succesful",
+      message: "Order created successfully",
       orderItems,
     });
   } catch (error) {
-    res.status(406).json({
-      message: "Failed",
+    res.status(400).json({
+      message: "Order creation failed",
+      error: error.message, // Provide error details for debugging
     });
   }
 });

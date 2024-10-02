@@ -12,6 +12,7 @@ const path = require("path");
 const config = require("config");
 const categoryRoutes = require("./routes/CategoryRoutes");
 const cartRoutes = require("./routes/CartRoutes");
+const orderRoutes = require("./routes/OrderRoutes");
 // const router = express.Router();
 const app = express();
 app.use(cors());
@@ -48,6 +49,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/order", orderRoutes);
 
 // app.use(express.static(path.join(__dirname, "/build")));
 // app.get("*", (req, res) =>
