@@ -8,6 +8,7 @@ const CartSchema = new mongoose.Schema(
         product: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Product",
+          required: true,
         },
         count: Number,
         color: String,
@@ -19,6 +20,7 @@ const CartSchema = new mongoose.Schema(
     User: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     },
   },
   {

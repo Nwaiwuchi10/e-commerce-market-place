@@ -20,6 +20,8 @@ router.post("/", async (req, res) => {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
+      phoneNumber: req.body.phoneNumber,
+      address: req.body.address,
     });
 
     //save user and respond

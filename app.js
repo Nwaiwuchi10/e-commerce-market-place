@@ -11,6 +11,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const config = require("config");
 const categoryRoutes = require("./routes/CategoryRoutes");
+const cartRoutes = require("./routes/CartRoutes");
 // const router = express.Router();
 const app = express();
 app.use(cors());
@@ -43,9 +44,10 @@ mongoose
   .catch((err) => console.log(err));
 /////
 app.use(express.json());
-app.use("/api/auth/", authRoutes);
-app.use("/api/products/", productRoutes);
-app.use("/api/category/", categoryRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/category", categoryRoutes);
+app.use("/api/cart", cartRoutes);
 
 // app.use(express.static(path.join(__dirname, "/build")));
 // app.get("*", (req, res) =>
