@@ -3,10 +3,10 @@ const Product = require("../models/Product");
 
 const cloudinary = require("../utils/Cloudinary");
 
-router.post("/", async (req, res) => {
+router.post("/create", async (req, res) => {
   const {
     name,
-    slug,
+    // slug,
     description,
     price,
     category,
@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
       images.map(async (image, index) => {
         const result = await cloudinary.uploader.upload(image, {
           folder: "products", // Optional: store images in a specific folder in Cloudinary
-          public_id: `${slug}-${brand}-${index}`, // Use slug and brand for a unique identifier
+          public_id: `${brand}-${brand}-${index}`, // Use slug and brand for a unique identifier
           resource_type: "image",
         });
 
@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
     // Create a new product with the uploaded images
     const newPost = new Product({
       name,
-      slug,
+      // slug,
       description,
       price,
       category,
@@ -62,7 +62,7 @@ router.post("/", async (req, res) => {
     res.status(201).json({
       id: post._id,
       name: post.name,
-      slug: post.slug,
+      // slug: post.slug,
       description: post.description,
       price: post.price,
       category: post.category,
