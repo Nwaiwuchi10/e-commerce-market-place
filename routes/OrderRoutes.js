@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
     });
 
     res.status(201).json({
-      message: "Order created successfully",
+      message: "Order created successfully,",
       orderItems,
     });
   } catch (error) {
