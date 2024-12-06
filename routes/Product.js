@@ -143,8 +143,16 @@ router.post("/upload", async (req, res) => {
     });
   }
 });
-
 router.get("/", async (req, res) => {
+  try {
+    const products = await Product.find({}).sort({ createdAt: -1 });
+
+    res.json(products);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+router.get("/ss", async (req, res) => {
   try {
     const products = await Product.find().sort({ createdAt: -1 });
     res.status(200).json({
